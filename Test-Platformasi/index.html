@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>20 Test Sinovi - Zamonaviy Bilim Baholash Platformasi</title>
+  <meta name="description" content="HTML, CSS, JavaScript va IT asoslari bo'yicha 20 ta savoldan iborat interaktiv test yechish veb-platformasi.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+
+  <!-- Ambient Background Blobs -->
+  <div class="background-blobs" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="logo-area">
+      <div class="logo-icon">⚡</div>
+      <div class="logo-text">
+        <h1>IT Test Pro</h1>
+        <p>20 Ta Savoldan Iborat Bilim Sinovi</p>
+      </div>
+    </div>
+
+    <div class="header-controls">
+      <!-- Taymer -->
+      <div class="timer-container" id="timerContainer" title="Qolgan vaqt">
+        <span>⏱️</span>
+        <span id="timerDisplay">20:00</span>
+      </div>
+
+      <!-- Ovozni yoqish / o'chirish -->
+      <button class="icon-btn" id="soundToggle" type="button" title="Ovozni yoqish/o'chirish" aria-label="Ovoz">
+        🔊
+      </button>
+
+      <!-- Mavzuni almashtirish (Dark / Light) -->
+      <button class="icon-btn" id="themeToggle" type="button" title="Mavzuni almashtirish" aria-label="Mavzu">
+        ☀️
+      </button>
+    </div>
+  </header>
+
+  <!-- Asosiy Test Ekrani -->
+  <main class="main-container" id="quizScreen">
+    
+    <!-- Savol va Variantlar Kartasi -->
+    <section class="quiz-card" aria-label="Joriy test savoli">
+      <div class="quiz-card-header">
+        <span class="question-badge" id="questionBadge">1 / 20-savol</span>
+        <button class="flag-btn" id="flagBtn" type="button" title="Keyinroq qaytib ko'rish uchun belgilash">
+          ☆ Belgilab qo'yish
+        </button>
+      </div>
+
+      <h2 class="question-title" id="questionTitle">
+        Savol yuklanmoqda...
+      </h2>
+
+      <!-- Variantlar ro'yxati -->
+      <ul class="options-list" id="optionsList" role="radiogroup">
+        <!-- JS orqali dinamik yaratiladi -->
+      </ul>
+
+      <!-- Pastki tugmalar -->
+      <div class="quiz-actions">
+        <button class="btn btn-secondary" id="prevBtn" type="button">
+          ⬅ Oldingisi
+        </button>
+        <button class="btn btn-primary" id="nextBtn" type="button">
+          Keyingisi ➔
+        </button>
+      </div>
+    </section>
+
+    <!-- Yon Panel (Progress va 20 ta Savol Navigatsiyasi) -->
+    <aside class="quiz-sidebar" aria-label="Test navigatsiyasi">
+      <!-- Progress Bar -->
+      <div class="sidebar-card">
+        <h3>
+          <span>Jarayon</span>
+          <span id="progressPercent">0%</span>
+        </h3>
+        <div class="progress-meta">
+          <span>Yechilgan savollar:</span>
+          <span id="progressCount">0 / 20 ta</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+
+      <!-- 20 Savol Palitrasi -->
+      <div class="sidebar-card">
+        <h3>Savollar Xaritasi</h3>
+        <div class="palette-grid" id="paletteGrid">
+          <!-- 1 dan 20 gacha tugmalar JS orqali to'ldiriladi -->
+        </div>
+
+        <!-- Shartli belgilar (Legend) -->
+        <div class="palette-legend">
+          <div class="legend-item">
+            <span class="legend-dot answered"></span>
+            <span>Javob berilgan</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-dot unanswered"></span>
+            <span>Javob berilmagan</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-dot current"></span>
+            <span>Joriy savol</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-dot flagged"></span>
+            <span>Belgilangan (★)</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- Natijalar Ekrani -->
+  <section class="result-container" id="resultScreen" aria-label="Test natijalari">
+    
+    <div class="result-header-card">
+      <div class="result-badge" id="resultScoreBadge">A'lo Natija</div>
+      <h2 class="result-title" id="resultTitle">Tabriklaymiz!</h2>
+      <p class="result-subtitle" id="resultSubtitle">Siz 20 ta test savolini muvaffaqiyatli yakunladingiz.</p>
+
+      <!-- Doiraviy foiz ko'rsatkichi -->
+      <div class="score-circle-wrapper">
+        <svg class="score-circle-svg" viewBox="0 0 160 160">
+          <defs>
+            <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#6366f1" />
+              <stop offset="50%" stop-color="#a855f7" />
+              <stop offset="100%" stop-color="#ec4899" />
+            </linearGradient>
+          </defs>
+          <circle class="circle-bg" cx="80" cy="80" r="70" />
+          <circle class="circle-progress" id="scoreCircleProgress" cx="80" cy="80" r="70" />
+        </svg>
+        <div class="score-text-inner">
+          <span class="score-percentage" id="scorePercentageText">0%</span>
+          <span class="score-fraction" id="scoreFractionText">0 / 20 to'g'ri</span>
+        </div>
+      </div>
+
+      <!-- Statistika kartalari -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">✅</div>
+          <div class="stat-value" id="statCorrect" style="color: var(--success);">0</div>
+          <div class="stat-label">To'g'ri javoblar</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">❌</div>
+          <div class="stat-value" id="statIncorrect" style="color: var(--danger);">0</div>
+          <div class="stat-label">Noto'g'ri javoblar</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">⚠️</div>
+          <div class="stat-value" id="statUnanswered" style="color: var(--warning);">0</div>
+          <div class="stat-label">Tashlab ketilgan</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">⏱️</div>
+          <div class="stat-value" id="statTimeTaken" style="color: var(--info);">00m 00s</div>
+          <div class="stat-label">Sarflangan vaqt</div>
+        </div>
+      </div>
+
+      <div class="result-actions" style="margin-top: 2rem;">
+        <button class="btn btn-primary" id="restartBtn" type="button">
+          🔄 Qaytadan topshirish
+        </button>
+      </div>
+    </div>
+
+    <!-- Savollar bo'yicha batafsil tahlil (Review) -->
+    <div class="review-section">
+      <h3>
+        <span>🔍</span>
+        <span>Savollarning To'liq Tahlili va Izohlari</span>
+      </h3>
+      <div class="review-list" id="reviewList">
+        <!-- Har bir savol tahlili JS orqali chiqariladi -->
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Yakunlashni tasdiqlash modali -->
+  <div class="modal-overlay" id="confirmModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-box">
+      <div class="modal-icon warning">⚠️</div>
+      <h3 class="modal-title" id="modalTitle">Testni yakunlamoqchimisiz?</h3>
+      <p class="modal-desc">
+        Siz hozircha <strong><span id="modalAnsweredCount">0</span> ta</strong> savolga javob berdingiz.<br>
+        Hali <strong><span id="modalRemainingCount">0</span> ta</strong> savol javobsiz qolgan.
+      </p>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" id="cancelModalBtn" type="button">
+          Davom etish
+        </button>
+        <button class="btn btn-success" id="confirmFinishBtn" type="button">
+          Ha, yakunlash
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="questions.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
